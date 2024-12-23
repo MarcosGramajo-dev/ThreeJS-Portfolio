@@ -1,6 +1,7 @@
 import '../App.css';
 import { Button } from '@material-tailwind/react';
 import Menu from '../assets/Menu.svg'
+import Close from '../assets/close.svg'
 import { useState } from 'react';
 
 
@@ -81,7 +82,7 @@ function MenuList({ hidden, setCameraState }) {
             <div className="w-full h-24 p-5 flex justify-between items-center md:justify-center">
                 <h1 className="text-white text-2xl w-full relative z-60">Marcos Gramajo._</h1>
                 <div>
-                    <img src={Menu} alt="Menu" className='relative md:hidden' onClick={() => setToggleMenu(!toggleMenu)} />
+                    <img src={Close} alt="Menu" className='relative md:hidden' onClick={() => setToggleMenu(!toggleMenu)} />
                 </div>
             </div>
             <div className=''>
