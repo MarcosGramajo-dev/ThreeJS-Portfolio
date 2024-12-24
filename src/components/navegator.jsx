@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 
 
-function MenuList({ hidden, setCameraState }) {
+function MenuList({ hidden, setCameraState, setPageState }) {
     const handleCameraChange = (index) => {
       const positions = [
         { position: [0, -50, 5], target: [0, 0, 0] },
@@ -19,23 +19,23 @@ function MenuList({ hidden, setCameraState }) {
   
     return (
       <ul className={`text-white md:gap-10 text-xl flex flex-col md:flex-row`}>
-        <Button variant="text" color="white" size="lg" onClick={() => handleCameraChange(0)}>
+        <Button variant="text" color="white" size="lg" onClick={() => {handleCameraChange(0); setPageState(0)}}>
           Home
         </Button>
-        <Button variant="text" color="white" size="lg" onClick={() => handleCameraChange(1)}>
+        <Button variant="text" color="white" size="lg" onClick={() => {handleCameraChange(1); setPageState(1)}}>
           Skill
         </Button>
-        <Button variant="text" color="white" size="lg" onClick={() => handleCameraChange(2)}>
+        <Button variant="text" color="white" size="lg" onClick={() => {handleCameraChange(2); setPageState(2)}}>
           Projects
         </Button>
-        <Button variant="text" color="white" size="lg" onClick={() => handleCameraChange(3)}>
+        <Button variant="text" color="white" size="lg" onClick={() => {handleCameraChange(3); setPageState(3)}}>
           Contact
         </Button>
       </ul>
     );
   }
 
-  function MenuListMobile({ hidden, setCameraState, setToggleMenu }) {
+  function MenuListMobile({ hidden, setCameraState, setToggleMenu, setPageState }) {
     const handleCameraChange = (index) => {
       const positions = [
         { position: [0, -50, 5], target: [0, 0, 0] },
@@ -48,23 +48,23 @@ function MenuList({ hidden, setCameraState }) {
   
     return (
       <ul className={`text-white md:gap-10 text-xl flex flex-col md:flex-row`}>
-        <Button className='text-2xl' variant="text" color="white" size="lg" onClick={() => {handleCameraChange(0); setToggleMenu(false)}}>
+        <Button className='text-2xl' variant="text" color="white" size="lg" onClick={() => {handleCameraChange(0); setToggleMenu(false); setPageState(0)}}>
           Home
         </Button>
-        <Button className='text-2xl' variant="text" color="white" size="lg" onClick={() => {handleCameraChange(1); setToggleMenu(false)}}>
+        <Button className='text-2xl' variant="text" color="white" size="lg" onClick={() => {handleCameraChange(1); setToggleMenu(false); setPageState(1)}}>
           Skill
         </Button>
-        <Button className='text-2xl' variant="text" color="white" size="lg" onClick={() => {handleCameraChange(2); setToggleMenu(false)}}>
+        <Button className='text-2xl' variant="text" color="white" size="lg" onClick={() => {handleCameraChange(2); setToggleMenu(false); setPageState(2)}}>
           Projects
         </Button>
-        <Button className='text-2xl' variant="text" color="white" size="lg" onClick={() => {handleCameraChange(3); setToggleMenu(false)}}>
+        <Button className='text-2xl' variant="text" color="white" size="lg" onClick={() => {handleCameraChange(3); setToggleMenu(false); setPageState(3)}}>
           Contact
         </Button>
       </ul>
     );
   }
 
-  function Navigator({ setCameraState }) {
+  function Navigator({ setCameraState, setPageState }) {
     const [toggleMenu, setToggleMenu] = useState(false);
   
     return (
@@ -72,7 +72,7 @@ function MenuList({ hidden, setCameraState }) {
         <div className="w-full h-24 p-5 flex justify-between items-center md:justify-center">
             <h1 className="text-white text-2xl w-full relative z-60">Marcos Gramajo._</h1>
             <div className='hidden md:flex'>
-                <MenuList hidden={toggleMenu} setCameraState={setCameraState}/>
+                <MenuList hidden={toggleMenu} setCameraState={setCameraState} setPageState={setPageState}/>
             </div>
             <div>
                 <img src={Menu} alt="Menu" className='relative md:hidden' onClick={() => setToggleMenu(!toggleMenu)} />
@@ -86,7 +86,7 @@ function MenuList({ hidden, setCameraState }) {
                 </div>
             </div>
             <div className=''>
-                <MenuListMobile hidden={false} setCameraState={setCameraState} setToggleMenu={setToggleMenu} />
+                <MenuListMobile hidden={false} setCameraState={setCameraState} setToggleMenu={setToggleMenu} setPageState={setPageState} />
             </div>
           </div>
       </nav>

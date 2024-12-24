@@ -107,9 +107,6 @@ function DrawerWithNavigation() {
             </ListItemPrefix>
             Portfolio
           </ListItem>
-          {/* <ListItem className="w-full h-[2px] bg-black my-3">
-
-          </ListItem> */}
         </List>
       </Drawer>
     </React.Fragment>

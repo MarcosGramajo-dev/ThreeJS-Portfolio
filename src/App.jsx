@@ -5,6 +5,8 @@ import './App.css';
 import { Button } from '@material-tailwind/react';
 import Menu from './assets/Menu.svg'
 import Navigator from './components/navegator.jsx';
+import Skills from './components/Pages/Skills.jsx';
+import Home from './components/Pages/Home.jsx'
 
 function App() {
   const [cameraState, setCameraState] = useState({
@@ -12,20 +14,40 @@ function App() {
     target: [0, 0, 0],
   });
 
+  const [pageState, setPageState] = useState(0);
+
+  // Función para renderizar la vista adecuada
+  const renderPage = () => {
+    switch (pageState) {
+      case 0:
+        return <Home key={pageState} />;
+      case 1:
+        return <Skills key={pageState} />;
+      case 2:
+        return <Projects key={pageState} />;
+      case 3:
+        return <Contact key={pageState} />;
+      default:
+        return <Home key={pageState} />;
+    }
+  };
+
+  
+
   return (
     <div className="lg:overflow-hidden flex flex-col items-center" style={{ background: 'radial-gradient(circle, #000, #030D1E)' }}>
-      <Navigator setCameraState={setCameraState} />
+      <Navigator setCameraState={setCameraState} setPageState={setPageState} />
 
       <div className="absolute top-2/4 z-50 left-0">
         <DrawerWithNavigation />
       </div>
 
-      <div className="absolute z-30 top-[30vh] w-full text-center flex flex-col justify-center items-center gap-5 md:top-[50vh]">
-        <h1 className="text-white text-2xl uppercase scale-up-ver-top md:text-7xl">Welcome to my Portfolio</h1>
-      </div>
-
       <div className="w-[100vw] h-[100vh] min-h-96">
         <ModelGeometricShapes cameraState={cameraState} />
+      </div>
+      {/* Vistas / Paginas */}
+      <div className='absolute top-[10vh] w-[80vw] h-[80vh]'>
+        {renderPage()}
       </div>
     </div>
   );
