@@ -7,14 +7,30 @@ import {
 } from "@material-tailwind/react";
 
 import ReactIcon from '../../assets/Icons/react.svg'
+import JSIcon from '../../assets/Icons/js.svg'
+import BootstrapIcon from '../../assets/Icons/bootstrap.svg'
+import CssIcon from '../../assets/Icons/css3.svg'
+import ExpressIcon from '../../assets/Icons/express.svg'
+import HtmlIcon from '../../assets/Icons/html.svg'
+import MongoIcon from '../../assets/Icons/mongo.svg'
+import MysqlIcon from '../../assets/Icons/mysql(1).svg'
+import NodejsIcon from '../../assets/Icons/nodejs.svg'
+import PythonIcon from '../../assets/Icons/python.svg'
+import SassIcon from '../../assets/Icons/sass.svg'
+import ScrumIcon from '../../assets/Icons/scrum.svg'
+import TailwindIcon from '../../assets/Icons/tailwind.svg'
+import TypescriptIcon from '../../assets/Icons/typescript.svg'
+import XmlIcon from '../../assets/Icons/xml.svg'
+import ThreeJsIcon from '../../assets/Icons/threejs.png'
+import PhpIcon from '../../assets/Icons/php3.svg'
 
 export function Skills() {
 
   const skills = [
     {
-      "name": "ReactJS",
-      "level": "Medium",
-      "icon": ReactIcon
+      "name": "JavaScript",
+      "level": "Advance",
+      "icon": JSIcon
     },
     {
       "name": "ReactJS",
@@ -22,74 +38,79 @@ export function Skills() {
       "icon": ReactIcon
     },
     {
-      "name": "ReactJS",
+      "name": "Typescript",
       "level": "Medium",
-      "icon": ReactIcon
+      "icon": TypescriptIcon
     },
     {
-      "name": "ReactJS",
+      "name": "NodeJS",
       "level": "Medium",
-      "icon": ReactIcon
+      "icon": NodejsIcon
     },
     {
-      "name": "ReactJS",
+      "name": "Express",
       "level": "Medium",
-      "icon": ReactIcon
+      "icon": ExpressIcon
     },
     {
-      "name": "ReactJS",
+      "name": "Html",
       "level": "Medium",
-      "icon": ReactIcon
+      "icon": HtmlIcon
     },
     {
-      "name": "ReactJS",
+      "name": "Xml",
       "level": "Medium",
-      "icon": ReactIcon
+      "icon": XmlIcon
     },
     {
-      "name": "ReactJS",
+      "name": "ThreeJS",
       "level": "Medium",
-      "icon": ReactIcon
+      "icon": ThreeJsIcon
     },
     {
-      "name": "ReactJS",
+      "name": "MySQL",
       "level": "Medium",
-      "icon": ReactIcon
+      "icon": MysqlIcon
     },
     {
-      "name": "ReactJS",
+      "name": "MongoDB",
       "level": "Medium",
-      "icon": ReactIcon
+      "icon": MongoIcon
     },
     {
-      "name": "ReactJS",
+      "name": "CSS",
       "level": "Medium",
-      "icon": ReactIcon
+      "icon": CssIcon
     },
     {
-      "name": "ReactJS",
+      "name": "SASS",
       "level": "Medium",
-      "icon": ReactIcon
+      "icon": SassIcon
     },
     {
-      "name": "ReactJS",
+      "name": "Tailwind",
       "level": "Medium",
-      "icon": ReactIcon
+      "icon": TailwindIcon
     },
     {
-      "name": "ReactJS",
+      "name": "Bootstrap",
       "level": "Medium",
-      "icon": ReactIcon
+      "icon": BootstrapIcon
     },
     {
-      "name": "ReactJS",
+      "name": "Python",
       "level": "Medium",
-      "icon": ReactIcon
+      "icon": PythonIcon
     },
     {
-      "name": "ReactJS",
+      "name": "Scrum",
       "level": "Medium",
-      "icon": ReactIcon
+      "icon": ScrumIcon
+    },
+    {
+      "name": "PHP",
+      "level": "Medium",
+      "icon": PhpIcon
     },
   ]
 
