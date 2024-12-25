@@ -57,9 +57,9 @@ function MenuList({ hidden, setCameraState, setPageState }) {
         <Button className='text-2xl' variant="text" color="white" size="lg" onClick={() => {handleCameraChange(2); setToggleMenu(false); setPageState(2)}}>
           Projects
         </Button>
-        <Button className='text-2xl' variant="text" color="white" size="lg" onClick={() => {handleCameraChange(3); setToggleMenu(false); setPageState(3)}}>
+        {/* <Button className='text-2xl' variant="text" color="white" size="lg" onClick={() => {handleCameraChange(3); setToggleMenu(false); setPageState(3)}}>
           Contact
-        </Button>
+        </Button> */}
       </ul>
     );
   }
@@ -68,27 +68,29 @@ function MenuList({ hidden, setCameraState, setPageState }) {
     const [toggleMenu, setToggleMenu] = useState(false);
   
     return (
-      <nav className="w-full fixed z-40">
-        <div className="w-full h-24 p-5 flex justify-between items-center md:justify-center">
-            <h1 className="text-white text-2xl w-full relative z-60">Marcos Gramajo._</h1>
-            <div className='hidden md:flex'>
-                <MenuList hidden={toggleMenu} setCameraState={setCameraState} setPageState={setPageState}/>
-            </div>
-            <div>
-                <img src={Menu} alt="Menu" className='relative md:hidden' onClick={() => setToggleMenu(!toggleMenu)} />
-            </div>
-        </div>
-        <div className={`${!toggleMenu ? 'hidden' : ''} md:hidden absolute w-screen h-screen bg-black/70 top-0 left-0`}>
-            <div className="w-full h-24 p-5 flex justify-between items-center md:justify-center">
-                <h1 className="text-white text-2xl w-full relative z-60">Marcos Gramajo._</h1>
-                <div>
-                    <img src={Close} alt="Menu" className='relative md:hidden' onClick={() => setToggleMenu(!toggleMenu)} />
-                </div>
-            </div>
-            <div className=''>
-                <MenuListMobile hidden={false} setCameraState={setCameraState} setToggleMenu={setToggleMenu} setPageState={setPageState} />
-            </div>
+      <nav className="w-full fixed z-40 flex justify-center">
+        <div className='w-full max-w-7xl'>
+          <div className="w-full h-24 p-5 flex justify-between items-center md:justify-between">
+              <h1 className="text-white text-2xl w-full relative z-60">Marcos Gramajo._</h1>
+              <div className='hidden md:flex'>
+                  <MenuList hidden={toggleMenu} setCameraState={setCameraState} setPageState={setPageState}/>
+              </div>
+              <div>
+                  <img src={Menu} alt="Menu" className='relative md:hidden' onClick={() => setToggleMenu(!toggleMenu)} />
+              </div>
           </div>
+          <div className={`${!toggleMenu ? 'hidden' : ''} md:hidden absolute w-screen h-screen bg-black/70 top-0 left-0`}>
+              <div className="w-full h-24 p-5 flex justify-between items-center md:justify-center">
+                  <h1 className="text-white text-2xl w-full relative z-60">Marcos Gramajo._</h1>
+                  <div>
+                      <img src={Close} alt="Menu" className='relative md:hidden' onClick={() => setToggleMenu(!toggleMenu)} />
+                  </div>
+              </div>
+              <div className=''>
+                  <MenuListMobile hidden={false} setCameraState={setCameraState} setToggleMenu={setToggleMenu} setPageState={setPageState} />
+              </div>
+          </div>
+        </div>
       </nav>
     );
   }

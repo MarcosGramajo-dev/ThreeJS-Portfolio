@@ -10,7 +10,7 @@ function Main() {
 
   useEffect(() => {
     // Simula el proceso de carga
-    const timer = setTimeout(() => setIsLoading(false), 2000); // 2 segundos de espera
+    const timer = setTimeout(() => setIsLoading(false), 1000);
     return () => clearTimeout(timer);
   }, []);
 

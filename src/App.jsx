@@ -2,11 +2,10 @@ import { useState } from 'react';
 import DrawerWithNavigation from './components/drawer.jsx';
 import ModelGeometricShapes from './components/modelGeometricShapes.jsx'
 import './App.css';
-import { Button } from '@material-tailwind/react';
-import Menu from './assets/Menu.svg'
 import Navigator from './components/navegator.jsx';
 import Skills from './components/Pages/Skills.jsx';
 import Home from './components/Pages/Home.jsx'
+import Projects from './components/Pages/Projects.jsx'
 
 function App() {
   const [cameraState, setCameraState] = useState({
@@ -32,8 +31,6 @@ function App() {
     }
   };
 
-  
-
   return (
     <div className="lg:overflow-hidden flex flex-col items-center" style={{ background: 'radial-gradient(circle, #000, #030D1E)' }}>
       <Navigator setCameraState={setCameraState} setPageState={setPageState} />
@@ -46,7 +43,7 @@ function App() {
         <ModelGeometricShapes cameraState={cameraState} />
       </div>
       {/* Vistas / Paginas */}
-      <div className='absolute top-[10vh] w-[80vw] h-[80vh]'>
+      <div className='absolute top-[10vh] w-[80vw] h-[80vh] max-w-7xl'>
         {renderPage()}
       </div>
     </div>
