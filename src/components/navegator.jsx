@@ -28,9 +28,9 @@ function MenuList({ hidden, setCameraState, setPageState }) {
         <Button variant="text" color="white" size="lg" onClick={() => {handleCameraChange(2); setPageState(2)}}>
           Projects
         </Button>
-        <Button variant="text" color="white" size="lg" onClick={() => {handleCameraChange(3); setPageState(3)}}>
+        {/* <Button variant="text" color="white" size="lg" onClick={() => {handleCameraChange(3); setPageState(3)}}>
           Contact
-        </Button>
+        </Button> */}
       </ul>
     );
   }

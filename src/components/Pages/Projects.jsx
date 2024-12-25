@@ -6,12 +6,6 @@ import {
     Button,
   } from "@material-tailwind/react";
 
-import RadiadoreGM from '../../assets/projects/RadiadoresGM.png'
-import CG from '../../assets/projects/CG.jpg'
-import CocaCola from '../../assets/projects/CocaCola.png'
-import GuillanaAutomotores from '../../assets/projects/GuillanaAutomotores.png'
-import GHTucuman from '../../assets/projects/GHTucuman.jpg'
-
 import ReactIcon from '../../assets/Icons/react.svg'
 // import JSIcon from '../../assets/Icons/js.svg'
 // import BootstrapIcon from '../../assets/Icons/bootstrap.svg'
@@ -38,7 +32,7 @@ function Projects(){
         {
             "name": "Radiadore Gramajo Moreira",
             "description": "My first landing with react and small implementes",
-            "img": RadiadoreGM,
+            "img": "https://res.cloudinary.com/dyjkycesi/image/upload/v1735161480/Portfolio/RadiadoresGM_mbvilg.png",
             "gitHub": "https://github.com/MarcosGramajo-dev/PaginaRadiadores",
             "web": "https://radiadoresgm.com.ar/",
             "tecologies": [ReactIcon, TailwindIcon]
@@ -46,7 +40,7 @@ function Projects(){
         {
             "name": "ThreeJS",
             "description": "First implement ThreeJS with .stl file",
-            "img": CG,
+            "img": "https://res.cloudinary.com/dyjkycesi/image/upload/v1735161480/Portfolio/CG_ubkct5.jpg",
             "gitHub": "https://github.com/MarcosGramajo-dev/PaginaRadiadores",
             "web": "https://cinthyagramajo.netlify.app/",
             "tecologies": [ReactIcon, TailwindIcon, ThreeJsIcon]
@@ -54,7 +48,7 @@ function Projects(){
         {
             "name": "Coca Cola",
             "description": "Implement ThreeJS",
-            "img": CocaCola,
+            "img": "https://res.cloudinary.com/dyjkycesi/image/upload/v1735161480/Portfolio/CocaCola_uwd0e6.png",
             "gitHub": "https://github.com/MarcosGramajo-dev/Portfolio",
             "web": "https://cocacolatin.netlify.app/",
             "tecologies": [ReactIcon, TailwindIcon, ThreeJsIcon]
@@ -62,7 +56,7 @@ function Projects(){
         {
             "name": "Guilliana Autotmores",
             "description": "Catalogue online",
-            "img": GuillanaAutomotores,
+            "img": "https://res.cloudinary.com/dyjkycesi/image/upload/v1735161480/Portfolio/GuillanaAutomotores_gud4xx.png",
             "gitHub": "https://github.com/MarcosGramajo-dev/FrontEcommers",
             "web": "https://ecommersagency.netlify.app",
             "tecologies": [ReactIcon, TypescriptIcon, TailwindIcon, ExpressIcon, MongoIcon]
@@ -70,7 +64,7 @@ function Projects(){
         {
             "name": "GH Tucuman",
             "description": "A votation system mercadopago API integration for payment",
-            "img": GHTucuman,
+            "img": "https://res.cloudinary.com/dyjkycesi/image/upload/v1735161480/Portfolio/GHTucuman_urp8tb.jpg",
             "gitHub": "https://github.com/MarcosGramajo-dev/ghTucuman",
             "web": "https://ghtucuman.com.ar/",
             "tecologies": [ReactIcon, CssIcon, ExpressIcon]
