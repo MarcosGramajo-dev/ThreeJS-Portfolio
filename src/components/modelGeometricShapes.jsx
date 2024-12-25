@@ -14,22 +14,22 @@ function Model() {
   useEffect(() => {
     if (geometry) {
       const boundingBox = new Box3().setFromBufferAttribute(geometry.attributes.position);
-
+  
       const center = new Vector3();
       boundingBox.getCenter(center);
-
+  
       geometry.translate(-center.x, -center.y, -center.z);
-
+  
       const colors = [];
       const colorOptions = ['#FFFFFF', '#ADD8E6', '#1E90FF', '#87CEEB'];
       const color = new Color();
-
+  
       for (let i = 0; i < geometry.attributes.position.count; i++) {
         const randomColor = colorOptions[Math.floor(Math.random() * colorOptions.length)];
         color.set(randomColor);
         colors.push(color.r, color.g, color.b);
       }
-
+  
       geometry.setAttribute('color', new Float32BufferAttribute(colors, 3));
     }
   }, [geometry]);
@@ -41,13 +41,13 @@ function Model() {
   return (
     <points ref={meshRef} scale={[0.5, 0.5, 0.5]}>
       <bufferGeometry attach="geometry" {...geometry} />
-      <pointsMaterial
+      <pointsMaterial 
         map={texture}
-        size={0.05}
-        vertexColors={true}
-        sizeAttenuation={true}
-        transparent={true}
-        opacity={0.8}
+        size={0.05} 
+        vertexColors={true} 
+        sizeAttenuation={true} 
+        transparent={true} 
+        opacity={0.8} 
       />
     </points>
   );
@@ -55,7 +55,7 @@ function Model() {
 
 function Nebula() {
   const pointsRef = useRef();
-  const count = 4000; // Número de partículas
+  const count = 5000; // Número de partículas
   const positions = [];
   const colors = [];
   const opacities = [];
@@ -102,32 +102,30 @@ function Nebula() {
 
 function CameraHandler({ cameraState }) {
   const cameraRef = useRef();
+  const currentTarget = useRef(new Vector3(0, 0, 0));
 
   useFrame(() => {
     if (cameraRef.current) {
-      const currentPosition = cameraRef.current.position;
-      const targetPosition = new Vector3(...cameraState.position);
-
-      // Incrementar o decrementar cada coordenada hacia el objetivo
-      if (Math.abs(currentPosition.x - targetPosition.x) > 0.01) {
-        currentPosition.x +=
-          currentPosition.x < targetPosition.x ? 0.1 : -0.1;
-      }
-      if (Math.abs(currentPosition.y - targetPosition.y) > 0.01) {
-        currentPosition.y +=
-          currentPosition.y < targetPosition.y ? 0.1 : -0.1;
-      }
-      if (Math.abs(currentPosition.z - targetPosition.z) > 0.01) {
-        currentPosition.z +=
-          currentPosition.z < targetPosition.z ? 0.1 : -0.1;
-      }
-
-      // Actualizar la posición de la cámara
+      const currentPosition = new Vector3(
+        cameraRef.current.position.x,
+        cameraRef.current.position.y,
+        cameraRef.current.position.z
+      );
+      const targetPosition = new Vector3(
+        cameraState.position[0],
+        cameraState.position[1],
+        cameraState.position[2]
+      );
+      currentPosition.lerp(targetPosition, 0.1); // 0.1 controla la suavidad
       cameraRef.current.position.copy(currentPosition);
 
-      // Actualizar el objetivo de la cámara
-      const targetLookAt = new Vector3(...cameraState.target);
-      cameraRef.current.lookAt(targetLookAt);
+      const target = new Vector3(
+        cameraState.target[0],
+        cameraState.target[1],
+        cameraState.target[2]
+      );
+      currentTarget.current.lerp(target, 0.1); // 0.1 controla la suavidad
+      cameraRef.current.lookAt(currentTarget.current);
     }
   });
 
@@ -141,19 +139,20 @@ function CameraHandler({ cameraState }) {
   );
 }
 
-
-
 function ModelGeometricShapes({ cameraState }) {
 
   return (
-    <div className="w-full h-full slide-in-bck-center">
+    <div className="w-full h-full puff-in-center">
       <Canvas
         style={{ height: "100%", width: "100%", background: 'radial-gradient(circle, #000, #030D1E)' }}
       >
 
         <CameraHandler cameraState={cameraState} />
 
-        <Suspense>
+        <Suspense fallback={            
+            <div className="flex items-center justify-center w-screen h-screen bg-gray-900">
+              <img src={Eclipse} alt="Cargando..." />
+            </div>}>
           <Model />
           <Nebula />
         </Suspense>
