@@ -149,10 +149,7 @@ function ModelGeometricShapes({ cameraState }) {
 
         <CameraHandler cameraState={cameraState} />
 
-        <Suspense fallback={            
-            <div className="flex items-center justify-center w-screen h-screen bg-gray-900">
-              <img src={Eclipse} alt="Cargando..." />
-            </div>}>
+        <Suspense>
           <Model />
           <Nebula />
         </Suspense>
