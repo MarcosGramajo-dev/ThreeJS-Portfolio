@@ -102,10 +102,11 @@ function Nebula() {
 
 function CameraHandler({ cameraState }) {
   const cameraRef = useRef();
+  const controlsRef = useRef();
   const currentTarget = useRef(new Vector3(0, 0, 0));
 
   useFrame(() => {
-    if (cameraRef.current) {
+    if (cameraRef.current && controlsRef.current) {
       const currentPosition = new Vector3(
         cameraRef.current.position.x,
         cameraRef.current.position.y,
@@ -116,26 +117,35 @@ function CameraHandler({ cameraState }) {
         cameraState.position[1],
         cameraState.position[2]
       );
-      currentPosition.lerp(targetPosition, 0.1); // 0.1 controla la suavidad
+
+      // Interpolar la posición de la cámara
+      currentPosition.lerp(targetPosition, 0.1); // Ajusta 0.1 para suavidad
       cameraRef.current.position.copy(currentPosition);
 
+      // Interpolar el objetivo de la cámara (lookAt)
       const target = new Vector3(
         cameraState.target[0],
         cameraState.target[1],
         cameraState.target[2]
       );
-      currentTarget.current.lerp(target, 0.1); // 0.1 controla la suavidad
-      cameraRef.current.lookAt(currentTarget.current);
+      currentTarget.current.lerp(target, 0.1);
+      controlsRef.current.target.copy(currentTarget.current);
+
+      // Actualizar los controles para reflejar los cambios
+      controlsRef.current.update();
     }
   });
 
   return (
-    <PerspectiveCamera
-      ref={cameraRef}
-      makeDefault
-      position={cameraState.position}
-      fov={75}
-    />
+    <>
+      <PerspectiveCamera
+        ref={cameraRef}
+        makeDefault
+        position={cameraState.position}
+        fov={75}
+      />
+      <OrbitControls ref={controlsRef} enablePan={false} enableZoom={false} enableRotate={true} />
+    </>
   );
 }
 
@@ -149,10 +159,7 @@ function ModelGeometricShapes({ cameraState }) {
 
         <CameraHandler cameraState={cameraState} />
 
-        <Suspense fallback={            
-            <div className="flex items-center justify-center w-screen h-screen bg-gray-900">
-              <img src={Eclipse} alt="Cargando..." />
-            </div>}>
+        <Suspense>
           <Model />
           <Nebula />
         </Suspense>
