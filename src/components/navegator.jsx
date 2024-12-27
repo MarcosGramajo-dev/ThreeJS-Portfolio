@@ -7,33 +7,31 @@ import { useState } from 'react';
 
 
 function MenuList({ hidden, setCameraState, setPageState }) {
-    const handleCameraChange = (index) => {
-      const positions = [
-        { position: [0, -50, 5], target: [0, 0, 0] },
-        { position: [50, 50, 50], target: [0, 0, 0] },
-        { position: [-50, 20, -30], target: [0, 0, 0] },
-        { position: [-50, 50, -30], target: [0, 0, 0] },
-      ];
-      setCameraState(positions[index]); // Llama correctamente a setCameraState
-    };
-  
-    return (
-      <ul className={`text-white md:gap-10 text-xl flex flex-col md:flex-row`}>
-        <Button variant="text" color="white" size="lg" onClick={() => {handleCameraChange(0); setPageState(0)}}>
-          Home
-        </Button>
-        <Button variant="text" color="white" size="lg" onClick={() => {handleCameraChange(1); setPageState(1)}}>
-          Skill
-        </Button>
-        <Button variant="text" color="white" size="lg" onClick={() => {handleCameraChange(2); setPageState(2)}}>
-          Projects
-        </Button>
-        {/* <Button variant="text" color="white" size="lg" onClick={() => {handleCameraChange(3); setPageState(3)}}>
-          Contact
-        </Button> */}
-      </ul>
-    );
-  }
+  const handleCameraChange = (index) => {
+    const positions = [
+      { position: [0, -50, 5], target: [0, 0, 0] },
+      { position: [50, 50, 50], target: [0, 0, 0] },
+      { position: [-50, 20, -30], target: [0, 0, 0] },
+      { position: [-50, 50, -30], target: [0, 0, 0] },
+    ];
+    setCameraState(positions[index]); // Actualiza la posición y el objetivo
+    setPageState(index); // Cambia la página
+  };
+
+  return (
+    <ul className="text-white md:gap-10 text-xl flex flex-col md:flex-row">
+      <Button variant="text" color="white" size="lg" onClick={() => handleCameraChange(0)}>
+        Home
+      </Button>
+      <Button variant="text" color="white" size="lg" onClick={() => handleCameraChange(1)}>
+        Skill
+      </Button>
+      <Button variant="text" color="white" size="lg" onClick={() => handleCameraChange(2)}>
+        Projects
+      </Button>
+    </ul>
+  );
+}
 
   function MenuListMobile({ hidden, setCameraState, setToggleMenu, setPageState }) {
     const handleCameraChange = (index) => {

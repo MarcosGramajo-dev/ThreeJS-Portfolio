@@ -84,7 +84,7 @@ function Nebula() {
   geometry.setAttribute("color", new Float32BufferAttribute(colors, 3));
 
   useFrame(() => {
-    pointsRef.current.rotation.y += 0.0001; // Rotación sutil
+    pointsRef.current.rotation.y += 0.00001; // Rotación sutil
   });
 
   return (
@@ -100,38 +100,31 @@ function Nebula() {
   );
 }
 
-function CameraHandler({ cameraState }) {
+function CameraHandler({ cameraState, currentCameraState, setCurrentCameraState }) {
   const cameraRef = useRef();
   const controlsRef = useRef();
-  const currentTarget = useRef(new Vector3(0, 0, 0));
 
   useFrame(() => {
     if (cameraRef.current && controlsRef.current) {
-      const currentPosition = new Vector3(
-        cameraRef.current.position.x,
-        cameraRef.current.position.y,
-        cameraRef.current.position.z
-      );
-      const targetPosition = new Vector3(
-        cameraState.position[0],
-        cameraState.position[1],
-        cameraState.position[2]
-      );
+      const currentPosition = new Vector3(...currentCameraState.position);
+      const targetPosition = new Vector3(...cameraState.position);
 
       // Interpolar la posición de la cámara
-      currentPosition.lerp(targetPosition, 0.1); // Ajusta 0.1 para suavidad
+      currentPosition.lerp(targetPosition, 0.01); // Ajusta 0.1 para suavidad
+      setCurrentCameraState({
+        position: [currentPosition.x, currentPosition.y, currentPosition.z],
+        target: cameraState.target, // Copiamos el objetivo directamente
+      });
+
       cameraRef.current.position.copy(currentPosition);
 
-      // Interpolar el objetivo de la cámara (lookAt)
-      const target = new Vector3(
-        cameraState.target[0],
-        cameraState.target[1],
-        cameraState.target[2]
-      );
-      currentTarget.current.lerp(target, 0.1);
-      controlsRef.current.target.copy(currentTarget.current);
+      // Actualizar el objetivo (lookAt) con interpolación suave
+      const currentTarget = new Vector3(...currentCameraState.target);
+      const targetLookAt = new Vector3(...cameraState.target);
+      currentTarget.lerp(targetLookAt, 0.1);
+      controlsRef.current.target.copy(currentTarget);
 
-      // Actualizar los controles para reflejar los cambios
+      // Actualizar los controles
       controlsRef.current.update();
     }
   });
@@ -141,7 +134,7 @@ function CameraHandler({ cameraState }) {
       <PerspectiveCamera
         ref={cameraRef}
         makeDefault
-        position={cameraState.position}
+        position={currentCameraState.position}
         fov={75}
       />
       <OrbitControls ref={controlsRef} enablePan={false} enableZoom={false} enableRotate={true} />
@@ -149,7 +142,8 @@ function CameraHandler({ cameraState }) {
   );
 }
 
-function ModelGeometricShapes({ cameraState }) {
+
+function ModelGeometricShapes({ cameraState, currentCameraState, setCurrentCameraState }) {
 
   return (
     <div className="w-full h-full puff-in-center">
@@ -157,11 +151,11 @@ function ModelGeometricShapes({ cameraState }) {
         style={{ height: "100%", width: "100%", background: 'radial-gradient(circle, #000, #030D1E)' }}
       >
 
-        <CameraHandler cameraState={cameraState} />
+        <CameraHandler cameraState={cameraState} currentCameraState={currentCameraState} setCurrentCameraState={setCurrentCameraState} />
 
         <Suspense>
           <Model />
-          <Nebula />
+          {/* <Nebula /> */}
         </Suspense>
         <OrbitControls enablePan={false} enableZoom={false} enableRotate={true} />
         <EffectComposer>

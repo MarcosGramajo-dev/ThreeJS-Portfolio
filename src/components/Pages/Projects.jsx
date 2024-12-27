@@ -76,7 +76,7 @@ function Projects(){
             <figcaption className="absolute w-full h-full overflow-y-scroll no-scrollbar">
             <div className="flex flex-wrap justify-center md:gap-10">
                 {proyects.map((element) => (
-                    <Card key={element.name} className="mt-6 max-w-md min-w-80 bg-white/30 border border-white">
+                    <Card key={element.name} className="mt-6 max-w-md min-w-80 bg-white/30 border border-whit">
                         <Typography variant="h4" color="white" className="text-center py-2"> {element.name} </Typography>
                         <CardBody className='py-0'>
                         
@@ -84,7 +84,7 @@ function Projects(){
                             <h4 className='py-2 text-white'>{element.description}</h4>
                         </CardBody>
                         <CardFooter className='w-full flex flex-col items-center p-4 gap-4'>
-                        <div className='flex justify-center items-center gap-2 px-6'>
+                        <div className='flex flex-wrap justify-center items-center gap-2 px-6'>
                             {element.tecologies.map((img) =>(
                                 <div key={img} className="w-14 h-14 bg-white rounded-full flex items-center justify-center hover:slide-top">
                                     <img alt='icon' className='w-8' src={img} loading="lazy"/>
