@@ -9,12 +9,26 @@ import { useState } from 'react';
 function MenuList({ hidden, setCameraState, setPageState }) {
   const handleCameraChange = (index) => {
     const positions = [
-      { position: [0, -50, 5], target: [0, 0, 0] },
-      { position: [50, 50, 50], target: [0, 0, 0] },
-      { position: [-50, 20, -30], target: [0, 0, 0] },
-      { position: [-50, 50, -30], target: [0, 0, 0] },
+      {
+        startPosition: [0, 0, 10],
+        endPosition: [0, -50, 5],
+        startTarget: [0, 0, 0],
+        endTarget: [0, 0, 0],
+      },
+      {
+        startPosition: [0, -50, 5],
+        endPosition: [50, 50, 50],
+        startTarget: [0, 0, 0],
+        endTarget: [0, 0, 0],
+      },
+      {
+        startPosition: [50, 50, 50],
+        endPosition: [-50, 20, -30],
+        startTarget: [0, 0, 0],
+        endTarget: [0, 0, 0],
+      },
     ];
-    setCameraState(positions[index]); // Actualiza la posición y el objetivo
+    setCameraState(positions[index]); // Actualiza posición y objetivo
     setPageState(index); // Cambia la página
   };
 
@@ -33,31 +47,45 @@ function MenuList({ hidden, setCameraState, setPageState }) {
   );
 }
 
+
   function MenuListMobile({ hidden, setCameraState, setToggleMenu, setPageState }) {
     const handleCameraChange = (index) => {
       const positions = [
-        { position: [0, -50, 5], target: [0, 0, 0] },
-        { position: [50, 50, 50], target: [0, 0, 0] },
-        { position: [-50, 20, -30], target: [0, 0, 0] },
-        { position: [-50, 50, -30], target: [0, 0, 0] },
+        {
+          startPosition: [0, 0, 10],
+          endPosition: [0, -50, 5],
+          startTarget: [0, 0, 0],
+          endTarget: [0, 0, 0],
+        },
+        {
+          startPosition: [0, -50, 5],
+          endPosition: [50, 50, 50],
+          startTarget: [0, 0, 0],
+          endTarget: [0, 0, 0],
+        },
+        {
+          startPosition: [50, 50, 50],
+          endPosition: [-50, 20, -30],
+          startTarget: [0, 0, 0],
+          endTarget: [0, 0, 0],
+        },
       ];
-      setCameraState(positions[index]);
+      setCameraState(positions[index]); // Actualiza posición y objetivo
+      setPageState(index); // Cambia la página
+      setToggleMenu(false);
     };
   
     return (
       <ul className={`text-white md:gap-10 text-xl flex flex-col md:flex-row`}>
-        <Button className='text-2xl' variant="text" color="white" size="lg" onClick={() => {handleCameraChange(0); setToggleMenu(false); setPageState(0)}}>
+        <Button className='text-2xl' variant="text" color="white" size="lg" onClick={() => handleCameraChange(0)}>
           Home
         </Button>
-        <Button className='text-2xl' variant="text" color="white" size="lg" onClick={() => {handleCameraChange(1); setToggleMenu(false); setPageState(1)}}>
+        <Button className='text-2xl' variant="text" color="white" size="lg" onClick={() => handleCameraChange(1)}>
           Skill
         </Button>
-        <Button className='text-2xl' variant="text" color="white" size="lg" onClick={() => {handleCameraChange(2); setToggleMenu(false); setPageState(2)}}>
+        <Button className='text-2xl' variant="text" color="white" size="lg" onClick={() => handleCameraChange(2)}>
           Projects
         </Button>
-        {/* <Button className='text-2xl' variant="text" color="white" size="lg" onClick={() => {handleCameraChange(3); setToggleMenu(false); setPageState(3)}}>
-          Contact
-        </Button> */}
       </ul>
     );
   }

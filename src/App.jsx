@@ -9,8 +9,10 @@ import Projects from './components/Pages/Projects.jsx'
 
 function App() {
   const [cameraState, setCameraState] = useState({
-    position: [0, -50, 5],
-    target: [0, 0, 0],
+    startPosition: [0, 0, 10],
+    endPosition: [0, -50, 5],
+    startTarget: [0, 0, 0],
+    endTarget: [0, 0, 0],
   });
   
   const [currentCameraState, setCurrentCameraState] = useState({
